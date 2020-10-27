@@ -62,6 +62,10 @@ int main( void )
 #include "mbedtls/certs.h"
 #include "mbedtls/timing.h"
 
+#ifdef UONEK_MBEDTLS_IMPORT_KEY
+#include "uonek/uonek_mbedtls.h"
+#endif
+
 /* Uncomment out the following line to default to IPv4 and disable IPv6 */
 //#define FORCE_IPV4
 
@@ -80,7 +84,6 @@ int main( void )
 #define MAX_RETRY       5
 
 #define DEBUG_LEVEL 0
-
 
 static void my_debug( void *ctx, int level,
                       const char *file, int line,
@@ -192,6 +195,12 @@ int main( int argc, char *argv[] )
     mbedtls_ssl_conf_rng( &conf, mbedtls_ctr_drbg_random, &ctr_drbg );
     mbedtls_ssl_conf_dbg( &conf, my_debug, stdout );
 
+#ifdef UONEK_MBEDTLS_IMPORT_KEY
+    mbedtls_ssl_conf_export_keys_cb(&conf, uonek_mbedtls_export_keys, NULL);
+    mbedtls_ssl_conf_export_keys_ext_cb(&conf, uonek_mbedtls_export_ext_keys, NULL);
+
+#endif
+    
     if( ( ret = mbedtls_ssl_setup( &ssl, &conf ) ) != 0 )
     {
         mbedtls_printf( " failed\n  ! mbedtls_ssl_setup returned %d\n\n", ret );

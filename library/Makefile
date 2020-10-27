@@ -1,5 +1,6 @@
 
 # Also see "include/mbedtls/config.h"
+DEBUG = true
 
 CFLAGS	?= -O2
 WARNING_CFLAGS ?=  -Wall -Wextra
@@ -167,6 +168,8 @@ OBJS_TLS= \
 .SILENT:
 
 .PHONY: all static shared clean
+
+print-%: ; @echo $* = $($*)
 
 ifndef SHARED
 all: static

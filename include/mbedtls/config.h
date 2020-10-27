@@ -1188,7 +1188,7 @@
  *
  * Enable functions that use the filesystem.
  */
-// temporary enabled for testing FIXME
+// temporary enabled for testing at Windows FIXME
 #define MBEDTLS_FS_IO
 
 /**
@@ -1620,7 +1620,7 @@
  * Uncomment this macro to enable hooking functions.
  */
 // it is temporary not enabled for testing FIXME
-#undef MBEDTLS_SSL_HW_RECORD_ACCEL
+#define MBEDTLS_SSL_HW_RECORD_ACCEL
 
 /**
  * \def MBEDTLS_SSL_CBC_RECORD_SPLITTING

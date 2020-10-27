@@ -2,6 +2,8 @@
 # To compile on SunOS: add "-lsocket -lnsl" to LDFLAGS
 # To compile with PKCS11: add "-lpkcs11-helper" to LDFLAGS
 
+DEBUG = true
+
 CFLAGS	?= -O2
 WARNING_CFLAGS ?= -Wall -Wextra
 WARNING_CXXFLAGS ?= -Wall -Wextra
